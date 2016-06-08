@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<ul>
+   {% for project in projects %}
+   <li>{{ project.title }}</li>
+   {% endfor %}
+7 </ul>
+<a class="btn btn-default" href="{% url 'users:create_user' %}" role="button">Add Project</a>
+<a class="btn btn-default" href="{% url 'home.views.index' %}" role="button">Back</a>
+{% endblock %}

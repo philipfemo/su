@@ -19,10 +19,12 @@ from django.contrib import admin
 from users.forms import LoginForm
 import users.views
 import home.views
+import projects.views
 #from mysite.home import views
 
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
+    url(r'^projects/', include('projects.urls')),
     url(r'^users/', include('users.urls', namespace = 'users')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', home.views.index, name = 'home'),

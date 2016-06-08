@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
 {%  load staticfiles %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
@@ -7,9 +9,6 @@
     <title> Frontpage</title>
 </head>
 <body>
-<h1> Frontpage</h1>
-<a href="{% url 'polls:index' %}">Polls</a>
-<a class="btn btn-default" href="{% url 'polls:index' %}" role="button">Polls</a>
-<a class="btn btn-default" href="{% url 'users:user_list' %}" role="button">Users</a>
 </body>
 </html>
+{% endblock %}

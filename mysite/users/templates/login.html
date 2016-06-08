@@ -43,6 +43,7 @@
                         <p class="bs-component">
                             <center>
                                 <input class="btn btn-success btn-sm" type="submit" value="login" />
+                                <a class="btn btn-default" href="{% url 'users:create_user' %}" role="button">Register</a>  
                             </center>
                         </p>
                         <input type="hidden" name="next" value="{{ next }}" />
