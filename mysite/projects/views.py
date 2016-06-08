@@ -9,12 +9,30 @@ from django.views import generic
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from .models import Project
+from .forms import ProjectForm
+from django.views.generic.list import ListView
+from django.views.generic.edit import FormView, UpdateView
 # Create your views here.
 
 def project_create(request):
-    projects = Project.get.all()
-    return render(request, "projectslist.html", {'projects' : projects})
+    form = ProjectForm(request.POST or None)
+    if form.is_valid():
+        something = form.save(commit=True)
+        something.save
+
+    #if request.method == "POST":
+    #    print (request.POST.get("Title"))
+    #    print (request.POST.get("description"))
+
+    context = {
+        "form": form,
+    }
+    return render(request, "project_form.html", context)
 
 def projectslist(request):
     projects = Project.objects.all()
-    return render(request, "projectslist.html", {'projects' : projects})
+    context = {
+        "objects_list": projects,
+        "title": "List"
+    }
+    return render(request, "projectslist.html", context)

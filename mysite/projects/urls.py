@@ -4,5 +4,6 @@ from . import views
 
 app_name = 'projects'
 urlpatterns = [
+    url(r'^create/$', views.project_create, name="project_create"),
     url(r'^$', views.projectslist, name="projectslist"),
 ]
