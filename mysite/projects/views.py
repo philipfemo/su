@@ -28,7 +28,8 @@ def project_create(request):
         "form": form,
     }
     return render(request, "project_form.html", context)
-
+    
+@login_required(login_url = "/login")
 def projectslist(request):
     projects = Project.objects.all()
     context = {
