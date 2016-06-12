@@ -17,8 +17,8 @@ from django.views.generic.edit import FormView, UpdateView
 def project_create(request):
     form = ProjectForm(request.POST or None)
     if form.is_valid():
-        something = form.save(commit=True)
-        something.save
+        instance = form.save(commit=True)
+        instance.save
 
     #if request.method == "POST":
     #    print (request.POST.get("Title"))
