@@ -1,24 +1,23 @@
-from django.shortcuts import render, get_object_or_404
-from django.template import loader
-from django.http import HttpResponseRedirect, HttpResponse
-from django.http import Http404
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 #from .models import Choice, Question
-from django.views import generic
-from django.utils import timezone
 from django.utils.decorators import method_decorator
 from .models import Project
 from .forms import ProjectForm
 from django.views.generic.list import ListView
-from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.edit import FormView
 # Create your views here.
 
+@login_required(login_url = "/login")
 def project_create(request):
     form = ProjectForm(request.POST or None)
     if form.is_valid():
-        something = form.save(commit=True)
-        something.save
+        project = form.save(commit=False)
+        project.author = request.user
+        project.save()
+        return HttpResponseRedirect(reverse("projects:projectslist"))
 
     #if request.method == "POST":
     #    print (request.POST.get("Title"))

@@ -1,16 +1,20 @@
 {% extends "base.html" %}
-{% block content %}
+{% block content %}  
 <table class="table table-striped">
  <thead>
    <tr>
      <th>Title</th>
      <th>Description</th>
+     <th>Author</th>
+     <th>Publication Date</th>
    </tr>
  </thead>
  {% for project in objects_list %}
    <tr>
      <td>{{ project.title }}</td>
      <td>{{ project.description }}</td>
+     <td>{{ project.author }}</td>
+     <td>{{ project.pub_date }}</td>
    </tr>
  {% endfor %}
 </table>
