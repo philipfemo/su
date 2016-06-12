@@ -19,6 +19,7 @@ def project_create(request):
         project.save()
         return HttpResponseRedirect(reverse("projects:projectslist"))
 
+
     #if request.method == "POST":
     #    print (request.POST.get("Title"))
     #    print (request.POST.get("description"))
