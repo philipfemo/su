@@ -9,31 +9,32 @@ from .forms import ProjectForm
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
 # Create your views here.
+@method_decorator(login_required(login_url = "/login"), name = "dispatch")
+class CreateProjectView(FormView):
+    template_name = "project_form.html"
+    form_class = ProjectForm
 
-@login_required(login_url = "/login")
-def project_create(request):
-    form = ProjectForm(request.POST or None)
-    if form.is_valid():
+    def get_success_url(self):
+        return reverse("projects:projectslist")
+
+    def form_valid(self, form):
+        title = form.cleaned_data["title"]
+        description = form.cleaned_data["description"]
         project = form.save(commit=False)
-        project.author = request.user
+        project.author = self.request.user
         project.save()
-        return HttpResponseRedirect(reverse("projects:projectslist"))
 
+        return super(CreateProjectView, self).form_valid(form)
 
-    #if request.method == "POST":
-    #    print (request.POST.get("Title"))
-    #    print (request.POST.get("description"))
+@method_decorator(login_required(login_url = "/login"), name = "dispatch")
+class IndexView(ListView):
+    model = Project
+    template_name = "projectslist.html"
 
-    context = {
-        "form": form,
-    }
-    return render(request, "project_form.html", context)
-    
-@login_required(login_url = "/login")
-def projectslist(request):
-    projects = Project.objects.all()
-    context = {
-        "objects_list": projects,
-        "title": "List"
-    }
-    return render(request, "projectslist.html", context)
+#def projectslist(request):
+#    projects = Project.objects.all()
+#    context = {
+#        "objects_list": projects,
+#        "title": "List"
+#    }
+#    return render(request, "projectslist.html", context)

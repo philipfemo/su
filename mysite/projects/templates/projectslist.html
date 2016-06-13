@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block content %}  
+{% block content %}
 <table class="table table-striped">
  <thead>
    <tr>
@@ -9,7 +9,7 @@
      <th>Publication Date</th>
    </tr>
  </thead>
- {% for project in objects_list %}
+ {% for project in object_list %}
    <tr>
      <td>{{ project.title }}</td>
      <td>{{ project.description }}</td>

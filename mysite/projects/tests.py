@@ -50,7 +50,7 @@ class ProjectTestCase(TestCase):
         c.force_login(user)
 
         response = c.get(self.url_list)
-        projects = response.context["objects_list"]
+        projects = response.context["object_list"]
         self.assertEqual(len(projects), 2)
         self.assertEqual(projects[0].title, "Algebra")
         self.assertEqual(projects[1].title, "Algorithms")
